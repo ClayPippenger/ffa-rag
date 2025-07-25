@@ -1,0 +1,138 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Theological Chunk Schema",
+  "type": "object",
+  "required": [
+    "chunk_id",
+    "text",
+    "chunk_type"
+  ],
+  "properties": {
+    "chunk_id": {
+      "type": "string",
+      "description": "Unique ID for the chunk (e.g., 'rom_3_28a')"
+    },
+    "text": {
+      "type": "string",
+      "description": "The actual content of the chunk"
+    },
+    "book": {
+      "type": "string",
+      "description": "Name of the book or source (e.g., 'Romans', 'Catechism')"
+    },
+    "chapter": {
+      "type": "integer",
+      "description": "Chapter number (if applicable)"
+    },
+    "verse": {
+      "type": [
+        "integer",
+        "string"
+      ],
+      "description": "Verse number or range (e.g., 28 or '28-30')"
+    },
+    "group": {
+      "type": "string",
+      "description": "The belief group or tradition (e.g., 'Catholic', 'LDS')"
+    },
+    "canon": {
+      "type": "string",
+      "description": "The canonical collection this belongs to (e.g., 'Vatican I', 'Book of Mormon')"
+    },
+    "author": {
+      "type": "string",
+      "description": "The attributed author (e.g., 'Paul', 'Joseph Smith')"
+    },
+    "chunk_type": {
+      "type": "string",
+      "enum": [
+        "scripture",
+        "commentary",
+        "doctrine",
+        "user_comment",
+        "overlay",
+        "generated"
+      ],
+      "description": "The type of content in this chunk"
+    },
+    "linked_chunk_id": {
+      "type": "string",
+      "description": "Optional ID of the related chunk (e.g., if this is a commentary or user note)"
+    },
+    "topic": {
+      "type": "string",
+      "description": "Primary topic or theological category"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of keywords or categories"
+    },
+    "source": {
+      "type": "string",
+      "description": "The specific version or source (e.g., 'KJV', 'Catechism')"
+    },
+    "era": {
+      "type": "string",
+      "description": "The era or period of the content (e.g., 'Old Testament', 'Early Church')"
+    },
+    "language": {
+      "type": "string",
+      "description": "Language of the chunk content (e.g., 'English', 'Latin')"
+    },
+    "worldly_perspective": {
+      "type": "string",
+      "description": "Optional GPT-generated secular interpretation"
+    },
+    "perspectives": {
+      "type": "object",
+      "description": "Dictionary of group-specific theological interpretations",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "user_comments": {
+      "type": "array",
+      "description": "Optional list of user-generated comments",
+      "items": {
+        "type": "object",
+        "properties": {
+          "author": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "author",
+          "text"
+        ]
+      }
+    },
+    "alignment_with": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Chunk IDs that align with this chunk"
+    },
+    "conflict_with": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Chunk IDs that conflict with this chunk"
+    },
+    "metadata_version": {
+      "type": "string",
+      "description": "Version of this metadata schema"
+    }
+  }
+}
